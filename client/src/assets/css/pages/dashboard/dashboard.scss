@@ -1,0 +1,77 @@
+@import "../../global";
+
+.page-container {
+    height: 100%;
+    width: 100%;
+    .welcome {
+        position: absolute;
+        font-size: 30px;
+        font-weight: bolder;
+        top: 10px;
+        right: 10px;
+        span {
+            color: $color4;
+        }
+    }
+    .tasks {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        top: 5%;
+        left: 2%;
+        .task-container {
+            height: calc(100% / 3.5);
+            border-radius: 10px;
+            &:nth-child(1) {
+                background-color: #f47579;
+            }
+            &:nth-child(2) {
+                background-color: #f7a072;
+            }
+            &:nth-child(3) {
+                background-color: #fefee3;
+            }
+            .task {
+                height: 100px;
+                width: 150px;
+                border-radius: 10px;
+                margin: 10px;
+            }
+        }
+    }
+
+    .add-task-container {
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        backdrop-filter: blur(2px);
+        .add-form {
+            border-radius: 15px;
+            background: $color2;
+            .close {
+                position: relative;
+                top: 10px;
+                width: 80%;
+                text-align: right;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .icons {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        gap: 10px;
+        img {
+            height: 75px;
+            width: 75px;
+            border-radius: 100%;
+            box-shadow: $shadow;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@import "../../global";
+
+.auth-container {
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    .auth-form {
+        padding: 30px 30px;
+        border-radius: 15px;
+        box-shadow: $shadow;
+        background-color: $color2;
+        gap: 10px;
+        .inp {
+            gap: 5px;
+            input {
+                @include input(32px, 250px);
+            }
+        }
+        .auth-redirect {
+            width: 100%;
+            .link {
+                color: $color4;
+                transition: 0.5s ease;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                    color: $color3;
+                }
+            }
+        }
+        button {
+            @include button(10px, 40px, $color3, $color1);
+        }
+    }
+}
