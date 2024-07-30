@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Info from "../Info";
+import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import High from "../components/High";
 import Medium from "../components/Medium";
@@ -9,6 +10,7 @@ import { useState } from "react";
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const id = Cookies.get("id");
     const user = Cookies.get("username");
 
     const [addDisplay, setAddDisplay] = useState("none");
@@ -20,6 +22,30 @@ const Dashboard = () => {
             Cookies.remove("username");
             navigate("/");
         }, 2500);
+    };
+
+    const addTask = (e) => {
+        e.preventDefault();
+
+        let priority = document.getElementById("priority");
+        let status = document.getElementById("status");
+
+        let body = {
+            taskName: document.getElementById("taskName").value,
+            taskDesc: document.getElementById("taskDesc").value,
+            priority: priority.options[priority.selectedIndex].text,
+            status: status.options[status.selectedIndex].text,
+            taskOwner: id,
+        };
+
+        axios.post(Info.server + "/api/v1/task", body).then((resp) => {
+            if (resp.data == true) {
+                toast.success("Task added !");
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 2500);
+            }
+        });
     };
 
     return (
@@ -37,10 +63,13 @@ const Dashboard = () => {
             </div>
 
             <div
-                className="add-task-container flex f-center"
+                className="add-task-container auth-container flex f-center"
                 style={{ display: addDisplay }}
             >
-                <form className="add-form flex f-column f-center">
+                <form
+                    onSubmit={addTask}
+                    className="add-form auth-form flex f-column f-center"
+                >
                     <div
                         className="close"
                         onClick={() => {
@@ -50,28 +79,33 @@ const Dashboard = () => {
                         X
                     </div>
                     <h2>Add Task</h2>
-                    <div className="inp">
+                    <div className="inp flex f-column">
                         <label>Task Name</label>
-                        <input type="text" placeholder="Enter Task name" />
+                        <input
+                            id="taskName"
+                            type="text"
+                            placeholder="Enter Task name"
+                        />
                     </div>
-                    <div className="inp">
+                    <div className="inp flex f-column">
                         <label>Task Description</label>
                         <input
+                            id="taskDesc"
                             type="text"
                             placeholder="Enter Task description"
                         />
                     </div>
-                    <div className="inp">
+                    <div className="inp flex f-column">
                         <label htmlFor="">Priority</label>
-                        <select>
+                        <select id="priority">
                             <option value="">High</option>
                             <option value="">Medium</option>
                             <option value="">Low</option>
                         </select>
                     </div>
-                    <div className="inp">
+                    <div className="inp flex f-column">
                         <label htmlFor="">Status</label>
-                        <select>
+                        <select id="status">
                             <option value="">Pending</option>
                             <option value="">On Progress</option>
                             <option value="">Completed</option>

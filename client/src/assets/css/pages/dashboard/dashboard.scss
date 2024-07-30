@@ -32,10 +32,25 @@
                 background-color: #fefee3;
             }
             .task {
-                height: 100px;
-                width: 150px;
+                padding: 10px;
+                height: 80px;
+                width: 130px;
                 border-radius: 10px;
                 margin: 10px;
+                &.Pending {
+                    background-color: $color2;
+                }
+                &.On {
+                    background-color: #c8b6ff;
+                }
+                .buttons {
+                    gap: 5px;
+                    justify-content: end;
+                    img {
+                        height: 20px;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

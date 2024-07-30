@@ -15,6 +15,9 @@
             input {
                 @include input(32px, 250px);
             }
+            select {
+                @include input(32px, 250px);
+            }
         }
         .auth-redirect {
             width: 100%;

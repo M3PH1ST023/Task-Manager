@@ -77,10 +77,25 @@ body {
   background-color: #fefee3;
 }
 .page-container .tasks .task-container .task {
-  height: 100px;
-  width: 150px;
+  padding: 10px;
+  height: 80px;
+  width: 130px;
   border-radius: 10px;
   margin: 10px;
+}
+.page-container .tasks .task-container .task.Pending {
+  background-color: #a2d2ff;
+}
+.page-container .tasks .task-container .task.On {
+  background-color: #c8b6ff;
+}
+.page-container .tasks .task-container .task .buttons {
+  gap: 5px;
+  justify-content: end;
+}
+.page-container .tasks .task-container .task .buttons img {
+  height: 20px;
+  cursor: pointer;
 }
 .page-container .add-task-container {
   z-index: 1;
